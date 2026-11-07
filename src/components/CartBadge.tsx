@@ -1,0 +1,24 @@
+
+import { Link } from "react-router";
+import { useCart } from "../hooks/useCart";
+
+export default function CartBadge() {
+  const { count } = useCart();
+
+  return (
+    <Link
+      to="/cart"
+      aria-label={`Cart, ${count} items`}
+      className="inline-flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
+    >
+      <span>Shopping Cart</span>
+
+      <span
+        aria-live="polite"
+        className="flex h-6 min-w-6 items-center justify-center rounded-full bg-violet-600 px-1.5 text-xs font-bold text-white"
+      >
+        {count}
+      </span>
+    </Link>
+  );
+}
