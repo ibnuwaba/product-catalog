@@ -1,75 +1,125 @@
-# React + TypeScript + Vite
+# Product Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive product catalog application built with React, TypeScript, Tailwind CSS, and TanStack Query. The application allows users to browse products, search the catalog, view product details, and manage a shopping cart.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Product Catalog:** Browse products in a responsive grid layout.
+- **Pagination:** Navigate through product pages.
+- **Product Search:** Search products with deferred input updates.
+- **Product Details:** View individual product information.
+- **Shopping Cart:** Add products, update quantities through repeated additions, and remove items.
+- **Persistent Cart:** Preserve cart contents using localStorage.
+- **Optimistic Updates:** Update the cart interface immediately while mutations are processing, with rollback on errors.
+- **Data Prefetching:** Prefetch product details when users hover over or focus on product links.
+- **Loading and Error States:** Provide feedback during data fetching and when requests fail.
+- **React Query Devtools:** Inspect and debug query and mutation state.
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- TypeScript
+- Vite
+- TanStack Query v5
+- React Router
+- Tailwind CSS v4
+- DummyJSON Products API
+- localStorage
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js
+- pnpm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
 
+   ```bash
+   git clone <https://github.com/ibnuwaba/product-catalog.git>
+   ```
+
+2. Navigate into the project:
+
+   ```bash
+   cd catalog
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+5. Open the local URL provided by Vite in your browser.
+
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Type-check and build the application |
+| `pnpm lint` | Run ESLint |
+| `pnpm preview` | Preview the production build |
+
+## Project Structure
+
+```text
+src/
+├── api/             # API requests and cart operations
+├── components/      # Reusable UI components
+├── hooks/           # Custom React hooks
+├── queries/         # Query keys and query options
+├── routes/          # Application pages
+├── assets/          # Static assets
+├── App.tsx          # Application routes
+├── main.tsx         # Application entry point
+└── index.css        # Global styles
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Data Management
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project uses TanStack Query for server-state management.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Query keys organize cached product and cart data.
+- `queryOptions` factories centralize query configuration.
+- `useQuery` handles fetching and caching.
+- `useMutation` handles cart operations.
+- `placeholderData` supports smooth pagination.
+- Optimistic updates improve the cart experience.
+- Query invalidation keeps cached data synchronized.
 
-```
+The product data is provided by the [DummyJSON API](https://dummyjson.com/).
+
+The cart is maintained locally using browser localStorage, while the demo API is used for add-to-cart requests.
+
+## Deployment
+
+The application can be deployed to Vercel.
+
+The root-level `vercel.json` file includes a rewrite rule to support React Router's client-side routes when users directly visit or refresh application pages.
+
+## Learning Objectives
+
+This project demonstrates practical experience with:
+
+- Server-state management using TanStack Query.
+- Query caching and invalidation.
+- Pagination and search.
+- Mutations and optimistic updates.
+- Data prefetching.
+- React Router navigation.
+- TypeScript integration.
+- Responsive UI development.
+
+---
+
+**Built as part of the Shi'era Developers Mentorship Program — AI-Powered Full Stack Development.**
