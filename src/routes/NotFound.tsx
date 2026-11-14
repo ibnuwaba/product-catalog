@@ -8,7 +8,7 @@ export default function NotFound() {
         Product Not Found
       </h1>
 
-      <p className="mt-3 text-zinc-500">
+      <p className="mt-3 text-zinc-600">
         Sorry, the product you're looking for doesn't exist.
       </p>
 

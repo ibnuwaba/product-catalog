@@ -122,4 +122,25 @@ This project demonstrates practical experience with:
 
 ---
 
+## Production Polish
+
+### Before Optimization – Build Baseline
+
+Initial production build before applying code splitting and accessibility improvements.
+
+| Asset       | Original Size | Gzip Size|
+|-            |
+| JavaScript  | 308.10 kB     | 95.73 kB |
+| CSS         | 24.14 kB      | 5.47 kB  |
+| HTML        | 0.45 kB       | 0.29 kB  |
+
+Build command:
+
+```bash
+pnpm build
+```
+
+Build result: Successful.
+
+
 **Built as part of the Shi'era Developers Mentorship Program — AI-Powered Full Stack Development.**

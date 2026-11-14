@@ -62,13 +62,13 @@ export default function ProductList() {
               <h2 className="text-2xl font-bold text-slate-900">
                 Our Products
               </h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-600">
                 Explore our latest collection
               </p>
             </div>
 
             {data && (
-              <span className="text-sm text-slate-500">
+              <span className="text-sm text-slate-600">
                 {data.total} products
               </span>
             )}
@@ -77,7 +77,7 @@ export default function ProductList() {
           {isPending ? (
             <ProductGridSkeleton />
           ) : isError ? (
-            <p role="alert" className="rounded-xl bg-red-50 p-5 text-red-600">
+            <p role="alert" className="rounded-xl bg-red-50 p-5 text-red-700">
               Couldn't load products: {error.message}
             </p>
           ) : (

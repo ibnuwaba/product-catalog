@@ -22,7 +22,14 @@ export default function ProductDetail() {
 
   if (isPending) {
     return (
-      <main className="mx-auto max-w-7xl px-5 py-20">
+      <main
+        className="mx-auto max-w-7xl px-5 py-20"
+        aria-label="Product details"
+        aria-busy="true"
+      >
+        <p role="status" className="mb-4 text-sm text-slate-600">
+          Loading product details...
+        </p>
         <div className="h-96 animate-pulse rounded-3xl bg-slate-200" />
       </main>
     );
@@ -47,13 +54,17 @@ export default function ProductDetail() {
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-12">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8">
+        <nav aria-label="Breadcrumb" className="mb-8">
           <p className="text-sm font-medium text-violet-600">
-            Home / Products / {data.category}
+            <span>Home / Products / </span>
+            <span aria-current="location">{data.category}</span>
           </p>
-        </div>
+        </nav>
 
-        <section className="grid gap-10 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-10">
+        <section
+          aria-labelledby="product-title"
+          className="grid gap-10 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-10"
+        >
           <div className="flex min-h-80 items-center justify-center rounded-2xl bg-slate-50 p-8">
             <img
               src={data.thumbnail}
@@ -67,7 +78,10 @@ export default function ProductDetail() {
               {data.category}
             </p>
 
-            <h1 className="text-3xl font-bold leading-tight text-slate-900 md:text-4xl">
+            <h1
+              id="product-title"
+              className="text-3xl font-bold leading-tight text-slate-900 md:text-4xl"
+            >
               {data.title}
             </h1>
 
@@ -75,8 +89,12 @@ export default function ProductDetail() {
               <span className="text-2xl font-bold text-slate-900">
                 ${data.price.toFixed(2)}
               </span>
-              <span className="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-600">
-                ★ {data.rating}
+
+              <span
+                aria-label={`Rated ${data.rating} out of 5`}
+                className="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-600"
+              >
+                <span aria-hidden="true">★</span> {data.rating}
               </span>
             </div>
 
@@ -94,9 +112,11 @@ export default function ProductDetail() {
             </div>
 
             <button
+              type="button"
               onClick={() => addMutation.mutate(data)}
               disabled={addMutation.isPending || data.stock <= 0}
-              className="mt-8 rounded-xl bg-violet-600 px-6 py-4 font-semibold text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
+              aria-label={`Add ${data.title} to cart`}
+              className="mt-8 rounded-xl bg-violet-600 px-6 py-4 font-semibold text-white transition hover:bg-violet-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {addMutation.isPending
                 ? "Adding..."
